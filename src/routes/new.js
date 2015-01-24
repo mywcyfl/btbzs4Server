@@ -13,9 +13,11 @@ router.get('/reg', function(req, res) {
 	var msg = req.query;
 	// var msg = req.body;	// when post method
 	msg.pwd = String(msg.pwd).trim();
+	msg.phone = String(msg.phone).trim();
 
 	if(!msg.phone || !msg.pwd){
 		res.send({errCode: code.ERR_INVALID_PARAMETERS});
+		return;
 	}
 
 	// 检查数据库中是否已有此人
@@ -23,20 +25,22 @@ router.get('/reg', function(req, res) {
 		if(!err){
 			res.send({errCode: code.ERR_USER_ALREADY_EXISTS, 
 					msg: 'user: ' + msg.phone + 'is already exists. please login directly.'});
+			return;
 		}
-	});
 
-	// 创建用户
-	userDao.createUser(msg.phone, msg.pwd, function(err, user){
-		if(!!err){
-			// 创建失败
-			res.send({errCode: code.ERR_CREATE_IN_DB_FAILED, msg: 'create in db failed, try again later.'});
-		} else {
-			// 创建成功
-			// TODO
-			// 将该用户加入redis
-			res.send({errCode: code.OK, msg: 'register success', user: user.clientInfoToJson()});
-		}
+		// 创建用户
+		userDao.createUser(msg.phone, msg.pwd, function(err, user){
+			if(!!err){
+				// 创建失败
+				res.send({errCode: code.ERR_CREATE_IN_DB_FAILED, msg: err});
+			} else {
+				// 创建成功
+				// TODO
+				// 将该用户加入redis
+				res.send({errCode: code.OK, msg: 'register success', user: user.clientInfoToJson()});
+			}
+		});
+
 	});
 });
 
@@ -47,7 +51,9 @@ router.get('/reg', function(req, res) {
 router.get('/login', function(req, res) {
 	var msg = req.query;
 	// var msg = req.body;	// when post method
-	
+	msg.pwd = String(msg.pwd).trim();
+	msg.phone = String(msg.phone).trim();
+
 	if(!msg.phone || !msg.pwd){
 		res.send({errCode: code.ERR_INVALID_PARAMETERS});
 	}
@@ -56,7 +62,7 @@ router.get('/login', function(req, res) {
 		if(!!err){
 			res.send({errCode: code.ERR_USER_DO_NOT_EXISTS, msg: 'user do not exists.'});
             return;
-		} else if(user.pwd != String(msg.pwd).trim()) {
+		} else if(user.pwd != msg.pwd) {
 			res.send({errCode: code.ERR_WRONG_PASSWORD, msg: 'wrong password.'});
             return;
 		}

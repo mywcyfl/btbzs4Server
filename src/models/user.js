@@ -28,7 +28,7 @@ module.exports = User;
  * 客户端需要的数据JSON化
  */
 User.prototype.clientInfoToJson = function(){
-	var date = {};
+	var data = {};
 	data['phone'] 		= this.phone;
 	data['openid'] 		= this.openid;
 	data['name'] 		= this.name;
