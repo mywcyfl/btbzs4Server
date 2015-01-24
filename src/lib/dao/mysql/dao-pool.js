@@ -1,5 +1,5 @@
 var _poolModule = require('generic-pool');
-var mysqlConfig = require('../../../../shared/config/mysql');
+var mysqlConfig = require('../../../../config/mysql');
 
 var env = process.env.NODE_ENV || 'development';
 if(mysqlConfig[env]) {
