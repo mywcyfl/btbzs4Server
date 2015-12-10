@@ -1,0 +1,12 @@
+# mac os
+.DS_Store
+.hgignore
+
+# node
+# ./src/node_modules/*
+
+# vim
+*.swp
+
+# log
+*.log
