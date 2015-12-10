@@ -1,4 +1,4 @@
-friends_server
+btbzs4server
 ==============
 
 server of friends
