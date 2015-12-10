@@ -3,7 +3,7 @@
 .hgignore
 
 # node
-# ./src/node_modules/*
+./src/node_modules/*
 
 # vim
 *.swp
