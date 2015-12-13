@@ -5,21 +5,21 @@ var utils = require('../util/utils');
  */
 function User(opts){
 	// 手机号
-	this.phone = opts.phone;
+	this.phone          = opts.phone;
 	// 密码
-	this.pwd = opts.pwd;
+	this.pwd            = opts.pwd;
 	// openid
-	this.openid = opts.openid || utils.createOpenid(opts.phone);
+	this.openid         = opts.openid || utils.createOpenid(opts.phone);
 	// 姓名
-	this.name = opts.name;
+	this.name           = opts.name;
 	// 注册时间
-	this.regTime = opts.regTime || Date.now();
+	this.regTime        = opts.regTime || Date.now();
 	// 上次登陆时间
-	this.lastLoginTime = opts.lastLoginTime || Date.now();
+	this.lastLoginTime  = opts.lastLoginTime || Date.now();
 	// 性别（1:男，2:女）
-	this.gender = opts.gender || 1;
+	this.gender         = opts.gender || 1;
 	// 生日
-	this.birthday = opts.birthday;
+	this.birthday       = opts.birthday;
 }
 
 module.exports = User;

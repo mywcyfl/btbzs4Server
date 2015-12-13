@@ -1,19 +1,19 @@
 var express = require('express');
 var userDao = require('../lib/dao/userDao');
-var code = require('../util/code');
-var utils = require('../util/utils');
-var router = express.Router();
+var code    = require('../util/code');
+var utils   = require('../util/utils');
+var router  = express.Router();
 
 
-/**
+/*
  * new user register. 
  * reg?phone=***&pwd=***
  */
 router.get('/reg', function(req, res) {
-	var msg = req.query;
-	// var msg = req.body;	// when post method
-	msg.pwd = String(msg.pwd).trim();
-	msg.phone = String(msg.phone).trim();
+	// var msg = req.body;	
+	var msg     = req.query;
+	msg.pwd     = String(msg.pwd).trim();
+	msg.phone   = String(msg.phone).trim();
 
 	if(!msg.phone || !msg.pwd){
 		res.send({errCode: code.ERR_INVALID_PARAMETERS});
@@ -73,5 +73,6 @@ router.get('/login', function(req, res) {
 		res.send({errCode: code.OK, user: user.clientInfoToJson()});
 	});
 });
+
 
 module.exports = router;
