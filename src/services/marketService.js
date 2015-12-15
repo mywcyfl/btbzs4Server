@@ -10,7 +10,7 @@ var MarketService = module.exports;
  */
 var kFreshInterval  = 5 * 1000; // 刷新间隔
 var timerHandler    = null;     // 计时器
-var tradeInfos     = {};       // 行情信息
+var tradeInfos      = {};       // 行情信息
 
 MarketService.start = function() {    
     console.log("MarketService try to start...")

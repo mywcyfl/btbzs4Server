@@ -7,8 +7,8 @@ var consts = module.exports
 /*
  * 币型枚举
  */
-consts.CoinType_BitCoin     = "bitCoin";
-consts.CoinType_LiteCoin    = "liteCoin";
+consts.CoinType_BitCoin     = "btc";
+consts.CoinType_LiteCoin    = "ltc";
 
 /*
  * 行情枚举
